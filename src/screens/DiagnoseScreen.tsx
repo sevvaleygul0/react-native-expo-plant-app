@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function HomeScreen(): React.JSX.Element {
+export default function DiagnoseScreen(): React.JSX.Element {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
+      <Text style={styles.title}>Diagnose</Text>
     </View>
   );
 }
