@@ -10,6 +10,8 @@ export default function App(): React.JSX.Element {
     RubikLight: require("./assets/fonts/Rubik-Light.ttf"),
     RubikRegular: require("./assets/fonts/Rubik-Regular.ttf"),
     RubikMedium: require("./assets/fonts/Rubik-Medium.ttf"),
+    RubikSemiBold: require("./assets/fonts/Rubik-SemiBold.ttf"),
+    RubikExtraBold: require("./assets/fonts/Rubik-ExtraBold.ttf"),
     SFProTextBold: require("./assets/fonts/SFProText-Bold.ttf"),
   });
 

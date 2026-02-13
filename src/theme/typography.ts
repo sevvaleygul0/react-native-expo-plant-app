@@ -4,16 +4,22 @@ export const FONT_FAMILIES = {
   RubikLight: "RubikLight",
   RubikRegular: "RubikRegular",
   RubikMedium: "RubikMedium",
+  RubikSemiBold: "RubikSemiBold",
+  RubikExtraBold: "RubikExtraBold",
   SFProTextBold: "SFProTextBold",
 } as const;
 
 export type TextVariant =
   | "RubikRegular28"
   | "RubikRegular16"
+  | "RubikRegular11"
   | "RubikMedium28"
   | "RubikMedium24"
   | "RubikMedium15"
-  | "RubikLight12"
+  | "RubikSemiBold28"
+  | "RubikExtraBold28"
+  | "RubikLight28"
+  | "RubikLight12";
 
 type TypographyMap = Record<TextVariant, TextStyle>;
 
@@ -30,6 +36,13 @@ export const TYPOGRAPHY_VARIANTS: TypographyMap = {
     fontWeight: "400",
     fontSize: 16,
     lineHeight: 22,
+    letterSpacing: 0.07,
+  },
+  RubikRegular11: {
+    fontFamily: FONT_FAMILIES.RubikRegular,
+    fontWeight: "400",
+    fontSize: 11,
+    lineHeight: 15,
     letterSpacing: 0.07,
   },
   RubikMedium28: {
@@ -54,6 +67,27 @@ export const TYPOGRAPHY_VARIANTS: TypographyMap = {
     lineHeight: 20,
     letterSpacing: -0.24,
   },
+  RubikSemiBold28: {
+    fontFamily: FONT_FAMILIES.RubikSemiBold,
+    fontWeight: "600",
+    fontSize: 28,
+    lineHeight: 28,
+    letterSpacing: 0.07,
+  },
+  RubikExtraBold28: {
+    fontFamily: FONT_FAMILIES.RubikExtraBold,
+    fontWeight: "800",
+    fontSize: 28,
+    lineHeight: 28,
+    letterSpacing: -1,
+  },
+  RubikLight28: {
+    fontFamily: FONT_FAMILIES.RubikLight,
+    fontWeight: "300",
+    fontSize: 28,
+    lineHeight: 28,
+    letterSpacing: 0.07,
+  },
   RubikLight12: {
     fontFamily: FONT_FAMILIES.RubikLight,
     fontWeight: "300",
@@ -61,5 +95,4 @@ export const TYPOGRAPHY_VARIANTS: TypographyMap = {
     lineHeight: 12,
     letterSpacing: 0,
   },
-
 };
