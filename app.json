@@ -39,6 +39,57 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Rubik-Light.ttf",
+            "./assets/fonts/Rubik-Regular.ttf",
+            "./assets/fonts/Rubik-Medium.ttf",
+            "./assets/fonts/SFProText-Bold.ttf"
+          ],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "RubikLight",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Rubik-Light.ttf",
+                    "weight": 300
+                  }
+                ]
+              },
+              {
+                "fontFamily": "RubikRegular",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Rubik-Regular.ttf",
+                    "weight": 400
+                  }
+                ]
+              },
+              {
+                "fontFamily": "RubikMedium",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Rubik-Medium.ttf",
+                    "weight": 500
+                  }
+                ]
+              },
+              {
+                "fontFamily": "SFProTextBold",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/SFProText-Bold.ttf",
+                    "weight": 700
+                  }
+                ]
+              }
+            ]
+          }
+        }
       ]
     ],
     "experiments": {
