@@ -60,7 +60,7 @@ export default function OnboardingWelcomeScreen(): React.JSX.Element {
         By tapping next, you are agreeing to PlantID{" "}
         <Text
           variant="RubikRegular"
-          size="small"
+          size="xsmall"
           style={[styles.underlineStyle, styles.footerText]}
         >
           Terms of Use
@@ -68,7 +68,7 @@ export default function OnboardingWelcomeScreen(): React.JSX.Element {
         &{" "}
         <Text
           variant="RubikRegular"
-          size="small"
+          size="xsmall"
           style={[styles.underlineStyle, styles.footerText]}
         >
           Privacy Policy

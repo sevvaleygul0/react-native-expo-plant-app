@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path, Rect, SvgProps } from "react-native-svg";
 
-const Speedomer = (props: SvgProps) => (
+const Speedometer = (props: SvgProps) => (
   <Svg viewBox="0 0 36 36" width={36} height={36} fill="none" {...props}>
     <Rect width={36} height={36} fill="#000" fillOpacity={0.24} rx={8} />
     <Path
@@ -15,4 +15,4 @@ const Speedomer = (props: SvgProps) => (
     />
   </Svg>
 );
-export default Speedomer;
+export default Speedometer;

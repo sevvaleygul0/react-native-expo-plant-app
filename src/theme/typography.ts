@@ -18,7 +18,7 @@ export type TextVariant =
   | "RubikExtraBold"
   | "RubikBold";
 
-export type TextSize = "small" | "medium" | "large" | "xlarge";
+export type TextSize = "xsmall" | "small" | "medium" | "large" | "xlarge";
 
 type TextVariantMap = Record<TextVariant, TextStyle>;
 type TextSizeMap = Record<TextSize, TextStyle>;
@@ -51,10 +51,12 @@ export const TEXT_VARIANT_STYLES: TextVariantMap = {
 };
 
 export const TEXT_SIZE_STYLES: TextSizeMap = {
-  small: {
+  xsmall: {
     fontSize: 11,
     lineHeight: 15,
   },
+  small: { fontSize: 12, lineHeight: 18 },
+
   medium: {
     fontSize: 16,
     lineHeight: 22,
