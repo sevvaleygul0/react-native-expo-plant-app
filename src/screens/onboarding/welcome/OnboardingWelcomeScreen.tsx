@@ -30,10 +30,14 @@ export default function OnboardingWelcomeScreen(): React.JSX.Element {
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <View style={styles.titleContainer}>
-        <Text variant="RubikLight28">Welcome to </Text>
-        <Text variant="RubikSemiBold28">PlantApp</Text>
+        <Text variant="RubikLight" size="xlarge">
+          Welcome to{" "}
+        </Text>
+        <Text variant="RubikSemiBold" size="xlarge">
+          PlantApp
+        </Text>
       </View>
-      <Text variant="RubikRegular16" style={styles.descriptionText}>
+      <Text variant="RubikRegular" size="medium" style={styles.descriptionText}>
         Identify more than 3000+ plants and 88% accuracy.
       </Text>
     </View>
@@ -52,17 +56,19 @@ export default function OnboardingWelcomeScreen(): React.JSX.Element {
   const renderFooter = () => (
     <View style={styles.footerContainer}>
       <Button text="Get Started" onPress={onGetStartedPress} />
-      <Text variant="RubikRegular11" style={styles.footerText}>
+      <Text variant="RubikRegular" size="small" style={styles.footerText}>
         By tapping next, you are agreeing to PlantID{" "}
         <Text
-          variant="RubikRegular11"
+          variant="RubikRegular"
+          size="small"
           style={[styles.underlineStyle, styles.footerText]}
         >
           Terms of Use
         </Text>{" "}
         &{" "}
         <Text
-          variant="RubikRegular11"
+          variant="RubikRegular"
+          size="small"
           style={[styles.underlineStyle, styles.footerText]}
         >
           Privacy Policy

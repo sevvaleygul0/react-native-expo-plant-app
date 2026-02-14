@@ -6,7 +6,12 @@ import {
   TextStyle,
 } from "react-native";
 
-import { TextVariant, TYPOGRAPHY_VARIANTS } from "@/src/theme/typography";
+import {
+  TextSize,
+  TextVariant,
+  TEXT_SIZE_STYLES,
+  TEXT_VARIANT_STYLES,
+} from "@/src/theme/typography";
 
 type UtilityTextProps = {
   color?: string;
@@ -16,11 +21,13 @@ type UtilityTextProps = {
 export type TextProps = RNTextProps &
   UtilityTextProps & {
     variant?: TextVariant;
+    size?: TextSize;
     style?: StyleProp<TextStyle>;
   };
 
 export default function Text({
-  variant = "RubikRegular16",
+  variant = "RubikRegular",
+  size = "medium",
   style,
   color,
   align,
@@ -37,7 +44,12 @@ export default function Text({
   return (
     <RNText
       {...rest}
-      style={[TYPOGRAPHY_VARIANTS[variant], utilityStyle, style]}
+      style={[
+        TEXT_VARIANT_STYLES[variant],
+        TEXT_SIZE_STYLES[size],
+        utilityStyle,
+        style,
+      ]}
     />
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 
 import OnboardingScreen from "@/src/screens/onboarding/OnboardingScreen";
 import OnboardingWelcomeScreen from "@/src/screens/onboarding/welcome/OnboardingWelcomeScreen";
-import PaywallScreen from "@/src/screens/PaywallScreen";
+import PaywallScreen from "@/src/screens/paywall/PaywallScreen";
 
 import InternalTabsNavigator from "./InternalTabsNavigator";
 import { ROOT_ROUTES } from "./routeNames";

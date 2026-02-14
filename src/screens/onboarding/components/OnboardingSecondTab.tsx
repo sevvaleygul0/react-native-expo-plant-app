@@ -7,9 +7,13 @@ export default function OnboardingSecondTab(): React.JSX.Element {
   const renderTitle = () => (
     <View style={styles.titleContainer}>
       <View style={styles.titleLine}>
-        <Text variant="RubikMedium28">Get plant </Text>
+        <Text variant="RubikMedium" size="xlarge">
+          Get plant{" "}
+        </Text>
         <View style={styles.highlightWordContainer}>
-          <Text variant="RubikExtraBold28">care guides</Text>
+          <Text variant="RubikExtraBold" size="xlarge">
+            care guides
+          </Text>
           <Image source={assets.images.brush} style={styles.guidesBrush} />
         </View>
       </View>

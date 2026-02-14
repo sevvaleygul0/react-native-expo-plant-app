@@ -7,13 +7,19 @@ export default function OnboardingFirstTab(): React.JSX.Element {
   const renderTitle = () => (
     <View style={styles.titleContainer}>
       <View style={styles.titleLine}>
-        <Text variant="RubikMedium28">Take a photo to </Text>
+        <Text variant="RubikMedium" size="xlarge">
+          Take a photo to{" "}
+        </Text>
         <View style={styles.highlightWordContainer}>
-          <Text variant="RubikExtraBold28">identify</Text>
+          <Text variant="RubikExtraBold" size="xlarge">
+            identify
+          </Text>
           <Image source={assets.images.brush} style={styles.identifyBrush} />
         </View>
       </View>
-      <Text variant="RubikMedium28">the plant!</Text>
+      <Text variant="RubikMedium" size="xlarge">
+        the plant!
+      </Text>
     </View>
   );
 
