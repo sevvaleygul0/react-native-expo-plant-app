@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ActivityIndicator,
   Pressable,
   PressableProps,
   StyleProp,
@@ -42,6 +43,7 @@ type ButtonProps = Omit<PressableProps, "onPress"> & {
   bgColor?: string;
   textColor?: string;
   variant?: ButtonVariant;
+  loading?: boolean;
 };
 
 export default function Button({
@@ -50,6 +52,7 @@ export default function Button({
   bgColor,
   textColor,
   variant = "default",
+  loading = false,
   style,
   ...rest
 }: ButtonProps): React.JSX.Element {
@@ -63,18 +66,23 @@ export default function Button({
         styles.baseContainer,
         selectedVariant.container,
         bgColor ? { backgroundColor: bgColor } : undefined,
+        loading ? styles.loadingContainer : undefined,
         style as StyleProp<ViewStyle>,
       ]}
     >
-      <Text
-        style={[
-          selectedVariant.text,
-          styles.baseText,
-          textColor ? { color: textColor } : undefined,
-        ]}
-      >
-        {text}
-      </Text>
+      {loading ? (
+        <ActivityIndicator color={textColor ?? "#FFFFFF"} />
+      ) : (
+        <Text
+          style={[
+            selectedVariant.text,
+            styles.baseText,
+            textColor ? { color: textColor } : undefined,
+          ]}
+        >
+          {text}
+        </Text>
+      )}
     </Pressable>
   );
 }
@@ -86,5 +94,8 @@ const styles = StyleSheet.create({
   },
   baseText: {
     textAlign: "center",
+  },
+  loadingContainer: {
+    opacity: 0.9,
   },
 });

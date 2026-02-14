@@ -1,78 +1,82 @@
+import Close from "@/src/assets/svgs/close";
 import Button from "@/src/components/Button";
-import Text from "@/src/components/Text";
 import {
   HorizontalCardList,
   assets as horizontalCardListAssets,
   HorizontalCardListItem,
 } from "@/src/components/horizontalCardList";
-import React, { useState } from "react";
+import Text from "@/src/components/Text";
+import React from "react";
 import {
   Dimensions,
   FlatList,
   Image,
   ListRenderItemInfo,
+  Pressable,
   StyleSheet,
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { assets as paywallAssets } from "./assets";
-import ProductItem, { PaywallProductItem } from "./components/ProductItem";
+import ProductItem from "./components/ProductItem";
+import { PAYWALL_FEATURE_SEEDS, PAYWALL_PRODUCTS } from "./constants";
+import usePaywallScreen from "./hooks/usePaywallScreen";
 
-const FEATURES: HorizontalCardListItem[] = [
-  {
-    id: "scan",
-    icon: <horizontalCardListAssets.svgs.Scan />,
-    title: "Unlimited",
-    desc: "Plant Identify",
-  },
-  {
-    id: "speed",
-    icon: <horizontalCardListAssets.svgs.Speedometer />,
-    title: "Faster",
-    desc: "Process",
-  },
-  {
-    id: "leaf",
-    icon: <horizontalCardListAssets.svgs.Leaf />,
-    title: "Detailed",
-    desc: "Plant care",
-  },
-];
-
-const PRODUCTS: PaywallProductItem[] = [
-  {
-    id: "monthly",
-    title: "1 Month",
-    description: "$2.99/month, auto renewable",
-  },
-  {
-    id: "yearly",
-    title: "1 Year",
-    description: "First 3 days free, then $529,99/year",
-    isSaveTag: true,
-  },
-];
+const TITLE_TEXT = "PlantApp";
+const PREMIUM_TEXT = "Premium";
+const SCREEN_DESCRIPTION_TEXT = "Access All Features";
+const PRODUCT_INFO_TEXT =
+  "After the 3-day free trial period you'll be charged ₺274.99 per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable";
+const TERMS_TEXT = "Terms";
+const PRIVACY_TEXT = "Privacy";
+const RESTORE_TEXT = "Restore";
 
 export default function PaywallScreen(): React.JSX.Element {
-  const [selectedProductId, setSelectedProductId] = useState<string>(
-    PRODUCTS[1]?.id ?? "",
-  );
+  const {
+    selectedProductId,
+    isInteractionDisabled,
+    ctaText,
+    onSelectProduct,
+    onClosePress,
+    onTermsPress,
+    onPrivacyPress,
+    onRestorePress,
+    onCtaPress,
+  } = usePaywallScreen();
   const { bottom, top } = useSafeAreaInsets();
 
-  const onContinuePress = () => {};
+  const FEATURES: HorizontalCardListItem[] = PAYWALL_FEATURE_SEEDS.map(
+    (feature) => {
+      const icon =
+        feature.iconKey === "Scan" ? (
+          <horizontalCardListAssets.svgs.Scan />
+        ) : feature.iconKey === "Speedometer" ? (
+          <horizontalCardListAssets.svgs.Speedometer />
+        ) : (
+          <horizontalCardListAssets.svgs.Leaf />
+        );
+
+      return {
+        id: feature.id,
+        icon,
+        title: feature.title,
+        desc: feature.desc,
+      };
+    },
+  );
 
   const renderTitle = () => (
     <View style={styles.titleContainer}>
       <View style={styles.titleRow}>
         <Text variant="RubikMedium" size="large" style={styles.plantAppTitle}>
-          PlantApp{" "}
+          {TITLE_TEXT}{" "}
         </Text>
         <Text variant="RubikLight" size="xlarge" style={styles.premiumTitle}>
-          Premium
+          {PREMIUM_TEXT}
         </Text>
       </View>
       <Text variant="RubikRegular" size="medium" style={styles.description}>
-        Access All Features
+        {SCREEN_DESCRIPTION_TEXT}
       </Text>
     </View>
   );
@@ -85,14 +89,15 @@ export default function PaywallScreen(): React.JSX.Element {
 
   const renderProductItem = ({
     item,
-  }: ListRenderItemInfo<PaywallProductItem>) => {
+  }: ListRenderItemInfo<(typeof PAYWALL_PRODUCTS)[number]>) => {
     const isSelected = item.id === selectedProductId;
 
     return (
       <ProductItem
         item={item}
         isSelected={isSelected}
-        onPress={() => setSelectedProductId(item.id)}
+        onPress={() => onSelectProduct(item.id)}
+        disabled={isInteractionDisabled}
       />
     );
   };
@@ -100,7 +105,7 @@ export default function PaywallScreen(): React.JSX.Element {
   const renderProducts = () => (
     <View style={styles.productsContainer}>
       <FlatList
-        data={PRODUCTS}
+        data={PAYWALL_PRODUCTS}
         renderItem={renderProductItem}
         keyExtractor={(item) => item.id}
         scrollEnabled={false}
@@ -116,21 +121,61 @@ export default function PaywallScreen(): React.JSX.Element {
       color="#FFFFFF85"
       style={styles.productInfoText}
     >
-      After the 3-day free trial period you’ll be charged ₺274.99 per year
-      unless you cancel before the trial expires. Yearly Subscription is
-      Auto-Renewable
+      {PRODUCT_INFO_TEXT}
     </Text>
   );
 
   const renderTermsPrivacyText = () => (
-    <Text
-      variant="RubikRegular"
-      size="xsmall"
-      color="#FFFFFF80"
-      style={styles.termsPrivacyText}
-    >
-      Terms • Privacy • Restore
-    </Text>
+    <View style={styles.termsRow}>
+      <Pressable
+        onPress={onTermsPress}
+        disabled={isInteractionDisabled}
+        accessibilityRole="button"
+      >
+        <Text
+          variant="RubikRegular"
+          size="xsmall"
+          color="#FFFFFF80"
+          style={styles.termsPrivacyText}
+        >
+          {TERMS_TEXT}
+        </Text>
+      </Pressable>
+      <Text variant="RubikRegular" size="xsmall" color="#FFFFFF80">
+        {" • "}
+      </Text>
+      <Pressable
+        onPress={onPrivacyPress}
+        disabled={isInteractionDisabled}
+        accessibilityRole="button"
+      >
+        <Text
+          variant="RubikRegular"
+          size="xsmall"
+          color="#FFFFFF80"
+          style={styles.termsPrivacyText}
+        >
+          {PRIVACY_TEXT}
+        </Text>
+      </Pressable>
+      <Text variant="RubikRegular" size="xsmall" color="#FFFFFF80">
+        {" • "}
+      </Text>
+      <Pressable
+        onPress={onRestorePress}
+        disabled={isInteractionDisabled}
+        accessibilityRole="button"
+      >
+        <Text
+          variant="RubikRegular"
+          size="xsmall"
+          color="#FFFFFF80"
+          style={styles.termsPrivacyText}
+        >
+          {RESTORE_TEXT}
+        </Text>
+      </Pressable>
+    </View>
   );
 
   const renderFooter = () => (
@@ -142,7 +187,12 @@ export default function PaywallScreen(): React.JSX.Element {
   );
 
   const renderCta = () => (
-    <Button text="Try free for 3 days" onPress={onContinuePress} />
+    <Button
+      text={ctaText}
+      onPress={onCtaPress}
+      disabled={isInteractionDisabled}
+      loading={isInteractionDisabled}
+    />
   );
 
   const renderBackgroundImage = () => (
@@ -152,9 +202,23 @@ export default function PaywallScreen(): React.JSX.Element {
     />
   );
 
+  const renderCloseButton = () => (
+    <Pressable
+      onPress={onClosePress}
+      style={[styles.closeButton, { top: top + 8 }]}
+      hitSlop={8}
+      accessibilityRole="button"
+      accessibilityLabel="Close paywall"
+      disabled={isInteractionDisabled}
+    >
+      <Close />
+    </Pressable>
+  );
+
   return (
     <View style={styles.container}>
       {renderBackgroundImage()}
+      {renderCloseButton()}
       <View
         style={[
           styles.contentContainer,
@@ -236,8 +300,18 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   termsPrivacyText: {
-    marginTop: 10,
     textAlign: "center",
     alignSelf: "center",
+  },
+  termsRow: {
+    marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  closeButton: {
+    position: "absolute",
+    right: 16,
+    zIndex: 2,
   },
 });

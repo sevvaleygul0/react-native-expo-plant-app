@@ -9,6 +9,7 @@ import ProfileScreen from "@/src/screens/ProfileScreen";
 
 import { INTERNAL_TAB_ROUTES } from "./routeNames";
 import { InternalTabParamList } from "./types";
+import TabBar from "./components/TabBar";
 
 const Tab = createBottomTabNavigator<InternalTabParamList>();
 
@@ -17,6 +18,7 @@ export default function InternalTabsNavigator(): React.JSX.Element {
     <Tab.Navigator
       initialRouteName={INTERNAL_TAB_ROUTES.HOME}
       screenOptions={{ headerShown: false }}
+      tabBar={(props) => <TabBar {...props} />}
     >
       <Tab.Screen component={HomeScreen} name={INTERNAL_TAB_ROUTES.HOME} />
       <Tab.Screen

@@ -1,26 +1,22 @@
 import Text from "@/src/components/Text";
+import { PaywallProduct } from "@/src/screens/paywall/constants";
 import { COLORS } from "@/src/theme/colors";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 
-export type PaywallProductItem = {
-  id: string;
-  title: string;
-  description: string;
-  isSaveTag?: boolean;
-};
-
 type ProductItemProps = {
-  item: PaywallProductItem;
+  item: PaywallProduct;
   isSelected: boolean;
   onPress: () => void;
+  disabled?: boolean;
 };
 
 export default function ProductItem({
   item,
   isSelected,
   onPress,
+  disabled = false,
 }: ProductItemProps): React.JSX.Element {
   const content = (
     <>
@@ -62,7 +58,11 @@ export default function ProductItem({
   );
 
   return (
-    <Pressable onPress={onPress} style={styles.productPressable}>
+    <Pressable
+      onPress={onPress}
+      style={styles.productPressable}
+      disabled={disabled}
+    >
       {isSelected ? (
         <LinearGradient
           colors={["rgba(40, 175, 110, 0.168)", "rgba(40, 175, 110, 0)"]}
@@ -123,9 +123,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   radioInnerDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 8,
+    width: 4,
+    height: 4,
+    borderRadius: 2,
     backgroundColor: "#FFFFFF",
   },
   productTextContainer: {
