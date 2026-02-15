@@ -114,6 +114,9 @@
     ],
     "experiments": {
       "reactCompiler": true
+    },
+    "extra": {
+      "apiBaseUrl": "https://dummy-api-jtg6bessta-ey.a.run.app"
     }
   }
 }

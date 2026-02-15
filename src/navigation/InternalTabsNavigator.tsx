@@ -3,13 +3,13 @@ import React from "react";
 
 import CreateScreen from "@/src/screens/CreateScreen";
 import DiagnoseScreen from "@/src/screens/DiagnoseScreen";
-import HomeScreen from "@/src/screens/HomeScreen";
+import HomeScreen from "@/src/screens/home/HomeScreen";
 import MyGardenScreen from "@/src/screens/MyGardenScreen";
 import ProfileScreen from "@/src/screens/ProfileScreen";
 
+import TabBar from "./components/TabBar";
 import { INTERNAL_TAB_ROUTES } from "./routeNames";
 import { InternalTabParamList } from "./types";
-import TabBar from "./components/TabBar";
 
 const Tab = createBottomTabNavigator<InternalTabParamList>();
 

@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     borderRadius: 999,
   },
   dotActive: {
-    backgroundColor: COLORS.MainTextColor,
+    backgroundColor: COLORS.MAIN_TEXT_COLOR,
     height: 10,
     width: 10,
   },
