@@ -2,22 +2,37 @@ import Text from "@/src/components/Text";
 import { assets } from "@/src/screens/onboarding/assets";
 import React from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function OnboardingFirstTab(): React.JSX.Element {
+  const { top: topInset } = useSafeAreaInsets();
+
   const renderTitle = () => (
-    <View style={styles.titleContainer}>
+    <View style={[styles.titleContainer, { paddingTop: topInset + 12 }]}>
       <View style={styles.titleLine}>
-        <Text variant="RubikMedium" size="xlarge">
+        <Text
+          variant="RubikMedium"
+          size="xlarge"
+          style={{ lineHeight: 40, letterSpacing: -1 }}
+        >
           Take a photo to{" "}
         </Text>
         <View style={styles.highlightWordContainer}>
-          <Text variant="RubikExtraBold" size="xlarge">
+          <Text
+            variant="RubikExtraBold"
+            size="xlarge"
+            style={{ lineHeight: 40, letterSpacing: -1 }}
+          >
             identify
           </Text>
           <Image source={assets.images.brush} style={styles.identifyBrush} />
         </View>
       </View>
-      <Text variant="RubikMedium" size="xlarge">
+      <Text
+        variant="RubikMedium"
+        size="xlarge"
+        style={{ lineHeight: 40, letterSpacing: -1 }}
+      >
         the plant!
       </Text>
     </View>
@@ -27,7 +42,7 @@ export default function OnboardingFirstTab(): React.JSX.Element {
     <View style={styles.contentContainer}>
       <Image
         source={assets.images.firstTabContent}
-        resizeMode="stretch"
+        resizeMode="contain"
         style={styles.contentImage}
       />
     </View>
@@ -35,6 +50,11 @@ export default function OnboardingFirstTab(): React.JSX.Element {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={assets.images.firstTabBackground}
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      />
       {renderTitle()}
       {renderContent()}
     </View>
@@ -47,8 +67,12 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
   },
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: "100%",
+    height: "100%",
+  },
   titleContainer: {
-    marginTop: 12,
     paddingHorizontal: 24,
   },
   titleLine: {
@@ -69,14 +93,10 @@ const styles = StyleSheet.create({
   contentContainer: {
     alignItems: "center",
     flex: 1,
-    justifyContent: "flex-end",
-    width: "100%",
+    justifyContent: "center",
   },
   contentImage: {
-    flex: 1,
-    aspectRatio: 375 / 683,
-    justifyContent: "flex-end",
-    maxWidth: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
     width: Dimensions.get("window").width,
   },
 });

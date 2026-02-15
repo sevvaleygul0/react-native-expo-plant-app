@@ -1,9 +1,9 @@
 export const images = {
-  artwork: require("./artwork.png"),
   brush: require("./brush.png"),
+  secondTabContent: require("./secondTabContent.png"),
   firstTabContent: require("./firstTabContent.png"),
-  leafBlur: require("./leafBlur.png"),
-  phone: require("./phone.png"),
+  firstTabBackground: require("./firstTabBackground.png"),
+  secondTabBackground: require("./secondTabBackground.png"),
 };
 
 export const assets = {

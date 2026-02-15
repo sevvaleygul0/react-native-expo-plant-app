@@ -20,7 +20,7 @@ export default function OnboardingScreen(): React.JSX.Element {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { width } = useWindowDimensions();
-  const { bottom: bottomInset, top: topInset } = useSafeAreaInsets();
+  const { bottom: bottomInset } = useSafeAreaInsets();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<ICarouselInstance>(null);
@@ -68,16 +68,14 @@ export default function OnboardingScreen(): React.JSX.Element {
 
   const renderFooter = () => (
     <View style={[styles.footerContainer, { bottom: bottomInset + 12.5 }]}>
-      {currentIndex === 1 ? (
-        <LinearGradient
-          colors={["rgba(255, 255, 255, 0)", "#FFFFFF"]}
-          locations={[0.002, 0.6723]}
-          pointerEvents="none"
-          start={{ x: 0.5, y: 0 }}
-          end={{ x: 0.5, y: 1 }}
-          style={styles.footerGradient}
-        />
-      ) : null}
+      <LinearGradient
+        colors={["rgba(255, 255, 255, 0)", "#FFFFFF"]}
+        locations={[0.002, 0.6723]}
+        pointerEvents="none"
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={styles.footerGradient}
+      />
       <View style={styles.footerContent}>
         <Button text="Continue" onPress={onContinuePress} />
         {renderDotIndicators()}
@@ -86,7 +84,7 @@ export default function OnboardingScreen(): React.JSX.Element {
   );
 
   return (
-    <View style={[styles.container, { paddingTop: topInset + 12 }]}>
+    <View style={styles.container}>
       <View style={styles.carouselContainer}>
         <Carousel
           ref={carouselRef}

@@ -1,12 +1,14 @@
 import { TextStyle } from "react-native";
 
 export const FONT_FAMILIES = {
-  Rubik: "Rubik",
   RubikLight: "RubikLight",
   RubikRegular: "RubikRegular",
   RubikMedium: "RubikMedium",
   RubikSemiBold: "RubikSemiBold",
+  RubikBold: "RubikBold",
   RubikExtraBold: "RubikExtraBold",
+  RubikBlack: "RubikBlack",
+  RubikItalic: "RubikItalic",
   SFProTextBold: "SFProTextBold",
 } as const;
 
@@ -15,8 +17,10 @@ export type TextVariant =
   | "RubikRegular"
   | "RubikMedium"
   | "RubikSemiBold"
+  | "RubikBold"
   | "RubikExtraBold"
-  | "RubikBold";
+  | "RubikBlack"
+  | "RubikItalic";
 
 export type TextSize = "xsmall" | "small" | "medium" | "large" | "xlarge";
 
@@ -40,13 +44,21 @@ export const TEXT_VARIANT_STYLES: TextVariantMap = {
     fontFamily: FONT_FAMILIES.RubikSemiBold,
     fontWeight: "600",
   },
+  RubikBold: {
+    fontFamily: FONT_FAMILIES.RubikBold,
+    fontWeight: "700",
+  },
   RubikExtraBold: {
     fontFamily: FONT_FAMILIES.RubikExtraBold,
     fontWeight: "800",
   },
-  RubikBold: {
-    fontFamily: FONT_FAMILIES.Rubik,
-    fontWeight: "700",
+  RubikBlack: {
+    fontFamily: FONT_FAMILIES.RubikBlack,
+    fontWeight: "900",
+  },
+  RubikItalic: {
+    fontFamily: FONT_FAMILIES.RubikItalic,
+    fontStyle: "italic",
   },
 };
 

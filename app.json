@@ -48,7 +48,10 @@
             "./assets/fonts/Rubik-Regular.ttf",
             "./assets/fonts/Rubik-Medium.ttf",
             "./assets/fonts/Rubik-SemiBold.ttf",
+            "./assets/fonts/Rubik-Bold.ttf",
             "./assets/fonts/Rubik-ExtraBold.ttf",
+            "./assets/fonts/Rubik-Black.ttf",
+            "./assets/fonts/Rubik-Italic.ttf",
             "./assets/fonts/SFProText-Bold.ttf"
           ],
           "android": {
@@ -90,11 +93,38 @@
                 ]
               },
               {
+                "fontFamily": "RubikBold",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Rubik-Bold.ttf",
+                    "weight": 700
+                  }
+                ]
+              },
+              {
                 "fontFamily": "RubikExtraBold",
                 "fontDefinitions": [
                   {
                     "path": "./assets/fonts/Rubik-ExtraBold.ttf",
                     "weight": 800
+                  }
+                ]
+              },
+              {
+                "fontFamily": "RubikBlack",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Rubik-Black.ttf",
+                    "weight": 900
+                  }
+                ]
+              },
+              {
+                "fontFamily": "RubikItalic",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Rubik-Italic.ttf",
+                    "style": "italic"
                   }
                 ]
               },
