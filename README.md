@@ -1,50 +1,126 @@
-# Welcome to your Expo app 👋
+# PlantApp - React Native Developer Case
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A cross-platform React Native case project built with TypeScript, Redux Toolkit, and React Navigation.  
+The implementation follows the provided onboarding/home flows and API integration requirements.
 
-## Get started
+## Demo: `assets/videos`
 
-1. Install dependencies
+<div align="center" style="display:flex; gap:12px; justify-content:center; flex-wrap:nowrap;">
+  <div style="position:relative; border:1px solid #d0d7de; border-radius:10px; padding:8px; width:31%;">
+    <div style="position:absolute; top:14px; left:14px; background:rgba(0,0,0,0.7); color:#fff; font-size:12px; padding:3px 8px; border-radius:999px;">
+      Android
+    </div>
+    <video src="./assets/videos/android.mp4" controls muted playsinline width="100%"></video>
+  </div>
+  <div style="position:relative; border:1px solid #d0d7de; border-radius:10px; padding:8px; width:31%;">
+    <div style="position:absolute; top:14px; left:14px; background:rgba(0,0,0,0.7); color:#fff; font-size:12px; padding:3px 8px; border-radius:999px;">
+      iPhone 17 Pro Max
+    </div>
+    <video src="./assets/videos/iPhone17ProMax.mov" controls muted playsinline width="100%"></video>
+  </div>
+  <div style="position:relative; border:1px solid #d0d7de; border-radius:10px; padding:8px; width:31%;">
+    <div style="position:absolute; top:14px; left:14px; background:rgba(0,0,0,0.7); color:#fff; font-size:12px; padding:3px 8px; border-radius:999px;">
+      iPhone 16e
+    </div>
+    <video src="./assets/videos/iPhone16e.mov" controls muted playsinline width="100%"></video>
+  </div>
+</div>
 
-   ```bash
-   npm install
-   ```
+## How to Run
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Start development server:
 
-## Learn more
+```bash
+npm start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Run app:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm run android
+npm run ios
+```
 
-## Join the community
+## Tech Stack
 
-Join our community of developers creating universal apps.
+- Expo / React Native
+- TypeScript
+- Navigation: React Navigation (`native-stack` + `bottom-tabs`)
+- State management: Redux Toolkit + React Redux
+- Data fetching: native `fetch` wrapper with timeout/error handling
+- UI: React Native `StyleSheet` + reusable custom components
+- Lint/format: ESLint + Prettier (no Husky/lint-staged configured)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## App Flows
+
+### Onboarding Flow
+
+```text
+[App Start]
+    |
+    v
+[Check onboardingCompleted]
+    | Yes -------------------------------> [Home Tabs]
+    |
+    No
+    v
+[Welcome Screen] --> [Onboarding Carousel] --> [Paywall (source: onboarding)]
+                                                       |
+                                                       v
+                                            [Close or Purchase]
+                                                       |
+                                                       v
+                                                   [Home Tabs]
+```
+
+### Home Flow
+
+```text
+[Home Screen]
+    |-------------------------------> [Fetch /getQuestions] --> [Carousel Render]
+    |                                           |
+    |                                           v
+    |                              [loading / error / empty / success]
+    |
+    |-------------------------------> [Fetch /getCategories] --> [Grid Render]
+                                                |
+                                                v
+                                   [loading / error / empty / success]
+```
+
+## State Management
+
+- Store keeps global user status: `onboardingCompleted`, `isSubscriber`.
+- `RootNavigator` consumes `onboardingCompleted` to select initial route.
+- `HomeScreen` consumes `isSubscriber` to conditionally show premium upsell card.
+- Paywall actions dispatch state updates (`setOnboardingCompleted`, `setIsSubscriber`).
+- Service/data requests stay in a service layer, while UI uses predictable global flags from Redux.
+- Redux is preferred over local state here because onboarding/subscription flags are shared across multiple screens and app start logic.
+
+## Persistence: Onboarding Should Not Repeat
+
+- Persistence uses MMKV (`react-native-mmkv`).
+- User status is loaded on startup and injected as preloaded Redux state.
+- Store subscription persists user status after state changes.
+- On paywall close from onboarding (or purchase from onboarding), `onboardingCompleted` is set to `true`.
+- On next launch, navigator starts directly from home flow instead of onboarding.
+
+## Case Requirements Coverage
+
+- [x] React Native cross-platform app structure (Expo + React Native).
+- [x] TypeScript used across the project.
+- [x] Redux added for global user status (`onboardingCompleted`, `isSubscriber`).
+- [x] API integration from case endpoints:
+  - `/getCategories`
+  - `/getQuestions`
+- [x] Two core flows implemented: onboarding and home.
+- [x] Onboarding completion rule implemented:
+  - Closing paywall from onboarding navigates to home.
+  - Completed users do not re-enter onboarding on next app launch.
+- [x] Pixel-focused UI implementation for core onboarding, paywall, and home screens.
