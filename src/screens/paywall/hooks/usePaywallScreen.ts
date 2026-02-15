@@ -1,11 +1,11 @@
 import { sleep } from "@/src/hooks/sleep";
-import { INTERNAL_TAB_ROUTES, ROOT_ROUTES } from "@/src/navigation/routeNames";
+import { ROOT_ROUTES } from "@/src/navigation/routeNames";
 import { RootStackParamList } from "@/src/navigation/types";
 import {
-    DEFAULT_SELECTED_PRODUCT_ID,
-    PRODUCT_IDS,
+  DEFAULT_SELECTED_PRODUCT_ID,
+  PRODUCT_IDS,
 } from "@/src/screens/paywall/constants";
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useCallback, useMemo, useState } from "react";
 import { Alert } from "react-native";
@@ -25,6 +25,7 @@ const RESTORE_ALERT_MESSAGE = "Restore purchase started.";
 export default function usePaywallScreen() {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const route = useRoute<RouteProp<RootStackParamList, typeof ROOT_ROUTES.PAYWALL>>();
 
   const [selectedProductId, setSelectedProductId] = useState<string>(
     DEFAULT_SELECTED_PRODUCT_ID,
@@ -54,10 +55,17 @@ export default function usePaywallScreen() {
     if (isInteractionDisabled) {
       return;
     }
-    navigation.navigate(ROOT_ROUTES.INTERNAL_SCREENS, {
-      screen: INTERNAL_TAB_ROUTES.HOME,
-    });
-  }, [isInteractionDisabled, navigation]);
+
+    if (route.params?.source === "onboarding") {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: ROOT_ROUTES.INTERNAL_SCREENS }],
+      });
+      return;
+    }
+
+    navigation.goBack();
+  }, [isInteractionDisabled, navigation, route.params?.source]);
 
   const onTermsPress = useCallback(() => {
     if (isInteractionDisabled) {

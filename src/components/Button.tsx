@@ -5,33 +5,24 @@ import {
   PressableProps,
   StyleProp,
   StyleSheet,
-  Text,
-  TextStyle,
   ViewStyle,
 } from "react-native";
+
+import Text from "@/src/components/Text";
 
 const BUTTON_VARIANTS = {
   default: {
     container: {
       height: 56,
       borderRadius: 12,
-      paddingTop: 18,
+      paddingTop: 14,
       paddingRight: 16,
-      paddingBottom: 18,
+      paddingBottom: 14,
       paddingLeft: 16,
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "#28AF6E",
     } as ViewStyle,
-    text: {
-      fontFamily: "SF Pro Text",
-      fontWeight: "700",
-      fontSize: 15,
-      lineHeight: 24,
-      letterSpacing: -0.24,
-      textAlign: "center",
-      color: "#FFFFFF",
-    } as TextStyle,
   },
 } as const;
 
@@ -74,11 +65,11 @@ export default function Button({
         <ActivityIndicator color={textColor ?? "#FFFFFF"} />
       ) : (
         <Text
-          style={[
-            selectedVariant.text,
-            styles.baseText,
-            textColor ? { color: textColor } : undefined,
-          ]}
+          variant="RubikMedium"
+          size="medium"
+          color={textColor ?? "#FFFFFF"}
+          align="center"
+          style={styles.buttonText}
         >
           {text}
         </Text>
@@ -92,8 +83,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  baseText: {
-    textAlign: "center",
+  buttonText: {
+    fontSize: 15,
+    lineHeight: 24,
+    letterSpacing: -0.24,
   },
   loadingContainer: {
     opacity: 0.9,

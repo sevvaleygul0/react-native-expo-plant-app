@@ -18,7 +18,7 @@ export default function HomeScreen(): React.JSX.Element {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const onPremiumCardPress = () => {
-    navigation.navigate(ROOT_ROUTES.PAYWALL);
+    navigation.navigate(ROOT_ROUTES.PAYWALL, { source: "home" });
   };
 
   const renderHeader = () => (

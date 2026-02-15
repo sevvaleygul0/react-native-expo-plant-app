@@ -34,7 +34,7 @@ export default function OnboardingScreen(): React.JSX.Element {
       return;
     }
 
-    navigation.navigate(ROOT_ROUTES.PAYWALL);
+    navigation.navigate(ROOT_ROUTES.PAYWALL, { source: "onboarding" });
   };
 
   const dotIndexes = useMemo(

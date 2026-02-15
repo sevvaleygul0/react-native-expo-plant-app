@@ -16,5 +16,9 @@ export type RootStackParamList = {
     | undefined;
   [ROOT_ROUTES.ONBOARDING]: undefined;
   [ROOT_ROUTES.ONBOARDING_WELCOME]: undefined;
-  [ROOT_ROUTES.PAYWALL]: undefined;
+  [ROOT_ROUTES.PAYWALL]:
+    | {
+        source?: "onboarding" | "home";
+      }
+    | undefined;
 };
