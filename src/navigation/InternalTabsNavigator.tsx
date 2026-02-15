@@ -17,7 +17,7 @@ export default function InternalTabsNavigator(): React.JSX.Element {
   return (
     <Tab.Navigator
       initialRouteName={INTERNAL_TAB_ROUTES.HOME}
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false, animation: "fade" }}
       tabBar={(props) => <TabBar {...props} />}
     >
       <Tab.Screen component={HomeScreen} name={INTERNAL_TAB_ROUTES.HOME} />

@@ -34,10 +34,15 @@ export default function RootNavigator(): React.JSX.Element {
         component={OnboardingScreen}
         name={ROOT_ROUTES.ONBOARDING}
       />
-      <Stack.Screen component={PaywallScreen} name={ROOT_ROUTES.PAYWALL} />
+      <Stack.Screen
+        component={PaywallScreen}
+        name={ROOT_ROUTES.PAYWALL}
+        options={{ animation: "fade" }}
+      />
       <Stack.Screen
         component={InternalTabsNavigator}
         name={ROOT_ROUTES.INTERNAL_SCREENS}
+        options={{ animation: "fade" }}
       />
     </Stack.Navigator>
   );
