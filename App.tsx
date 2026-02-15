@@ -15,7 +15,16 @@ export default function App(): React.JSX.Element {
     RubikExtraBold: require("./assets/fonts/Rubik-ExtraBold.ttf"),
     RubikBlack: require("./assets/fonts/Rubik-Black.ttf"),
     RubikItalic: require("./assets/fonts/Rubik-Italic.ttf"),
-    SFProTextBold: require("./assets/fonts/SFProText-Bold.ttf"),
+    SFProDisplayRegular: require("./assets/fonts/SFPRODISPLAYREGULAR.OTF"),
+    SFProDisplayMedium: require("./assets/fonts/SFPRODISPLAYMEDIUM.OTF"),
+    SFProDisplayBold: require("./assets/fonts/SFPRODISPLAYBOLD.OTF"),
+    SFProDisplayUltraLightItalic: require("./assets/fonts/SFPRODISPLAYULTRALIGHTITALIC.OTF"),
+    SFProDisplayThinItalic: require("./assets/fonts/SFPRODISPLAYTHINITALIC.OTF"),
+    SFProDisplayLightItalic: require("./assets/fonts/SFPRODISPLAYLIGHTITALIC.OTF"),
+    SFProDisplaySemiBoldItalic: require("./assets/fonts/SFPRODISPLAYSEMIBOLDITALIC.OTF"),
+    SFProDisplayHeavyItalic: require("./assets/fonts/SFPRODISPLAYHEAVYITALIC.OTF"),
+    SFProDisplayBlackItalic: require("./assets/fonts/SFPRODISPLAYBLACKITALIC.OTF"),
+    VisbyCFExtraBold: require("./assets/fonts/VisbyCF-ExtraBold.otf"),
   });
 
   React.useEffect(() => {

@@ -90,11 +90,13 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     lineHeight: 24,
+    letterSpacing: 0.38,
   },
   desc: {
     marginTop: 4,
-    color: "#FFFFFF",
+    color: "#FFFFFFB2",
     fontSize: 13,
     lineHeight: 16,
+    letterSpacing: -0.08,
   },
 });

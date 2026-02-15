@@ -9,7 +9,16 @@ export const FONT_FAMILIES = {
   RubikExtraBold: "RubikExtraBold",
   RubikBlack: "RubikBlack",
   RubikItalic: "RubikItalic",
-  SFProTextBold: "SFProTextBold",
+  SFProDisplayRegular: "SFProDisplayRegular",
+  SFProDisplayMedium: "SFProDisplayMedium",
+  SFProDisplayBold: "SFProDisplayBold",
+  SFProDisplayUltraLightItalic: "SFProDisplayUltraLightItalic",
+  SFProDisplayThinItalic: "SFProDisplayThinItalic",
+  SFProDisplayLightItalic: "SFProDisplayLightItalic",
+  SFProDisplaySemiBoldItalic: "SFProDisplaySemiBoldItalic",
+  SFProDisplayHeavyItalic: "SFProDisplayHeavyItalic",
+  SFProDisplayBlackItalic: "SFProDisplayBlackItalic",
+  VisbyCFExtraBold: "VisbyCFExtraBold",
 } as const;
 
 export type TextVariant =
@@ -20,7 +29,17 @@ export type TextVariant =
   | "RubikBold"
   | "RubikExtraBold"
   | "RubikBlack"
-  | "RubikItalic";
+  | "RubikItalic"
+  | "SFProDisplayRegular"
+  | "SFProDisplayMedium"
+  | "SFProDisplayBold"
+  | "SFProDisplayUltraLightItalic"
+  | "SFProDisplayThinItalic"
+  | "SFProDisplayLightItalic"
+  | "SFProDisplaySemiBoldItalic"
+  | "SFProDisplayHeavyItalic"
+  | "SFProDisplayBlackItalic"
+  | "VisbyCFExtraBold";
 
 export type TextSize = "xsmall" | "small" | "medium" | "large" | "xlarge";
 
@@ -59,6 +78,52 @@ export const TEXT_VARIANT_STYLES: TextVariantMap = {
   RubikItalic: {
     fontFamily: FONT_FAMILIES.RubikItalic,
     fontStyle: "italic",
+  },
+  SFProDisplayRegular: {
+    fontFamily: FONT_FAMILIES.SFProDisplayRegular,
+    fontWeight: "400",
+  },
+  SFProDisplayMedium: {
+    fontFamily: FONT_FAMILIES.SFProDisplayMedium,
+    fontWeight: "500",
+  },
+  SFProDisplayBold: {
+    fontFamily: FONT_FAMILIES.SFProDisplayBold,
+    fontWeight: "700",
+  },
+  SFProDisplayUltraLightItalic: {
+    fontFamily: FONT_FAMILIES.SFProDisplayUltraLightItalic,
+    fontWeight: "200",
+    fontStyle: "italic",
+  },
+  SFProDisplayThinItalic: {
+    fontFamily: FONT_FAMILIES.SFProDisplayThinItalic,
+    fontWeight: "100",
+    fontStyle: "italic",
+  },
+  SFProDisplayLightItalic: {
+    fontFamily: FONT_FAMILIES.SFProDisplayLightItalic,
+    fontWeight: "300",
+    fontStyle: "italic",
+  },
+  SFProDisplaySemiBoldItalic: {
+    fontFamily: FONT_FAMILIES.SFProDisplaySemiBoldItalic,
+    fontWeight: "600",
+    fontStyle: "italic",
+  },
+  SFProDisplayHeavyItalic: {
+    fontFamily: FONT_FAMILIES.SFProDisplayHeavyItalic,
+    fontWeight: "800",
+    fontStyle: "italic",
+  },
+  SFProDisplayBlackItalic: {
+    fontFamily: FONT_FAMILIES.SFProDisplayBlackItalic,
+    fontWeight: "900",
+    fontStyle: "italic",
+  },
+  VisbyCFExtraBold: {
+    fontFamily: FONT_FAMILIES.VisbyCFExtraBold,
+    fontWeight: "800",
   },
 };
 

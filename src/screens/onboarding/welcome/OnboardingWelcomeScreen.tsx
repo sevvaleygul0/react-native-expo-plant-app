@@ -30,10 +30,10 @@ export default function OnboardingWelcomeScreen(): React.JSX.Element {
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <View style={styles.titleContainer}>
-        <Text variant="RubikLight" size="xlarge">
+        <Text variant="RubikLight" size="xlarge" style={styles.titleText}>
           Welcome to{" "}
         </Text>
-        <Text variant="RubikSemiBold" size="xlarge">
+        <Text variant="RubikSemiBold" size="xlarge" style={styles.titleText}>
           PlantApp
         </Text>
       </View>
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     color: "#13231BB2",
+    letterSpacing: 0.07,
   },
   contentContainer: {
     flex: 1,
@@ -123,8 +124,12 @@ const styles = StyleSheet.create({
   footerText: {
     textAlign: "center",
     color: "#597165B2",
+    letterSpacing: 0.07,
   },
   underlineStyle: {
     textDecorationLine: "underline",
+  },
+  titleText: {
+    letterSpacing: 0.07,
   },
 });

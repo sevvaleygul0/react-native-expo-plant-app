@@ -68,14 +68,18 @@ export default function PaywallScreen(): React.JSX.Element {
   const renderTitle = () => (
     <View style={styles.titleContainer}>
       <View style={styles.titleRow}>
-        <Text variant="RubikMedium" size="large" style={styles.plantAppTitle}>
+        <Text
+          variant="VisbyCFExtraBold"
+          size="xlarge"
+          style={styles.plantAppTitle}
+        >
           {TITLE_TEXT}{" "}
         </Text>
         <Text variant="RubikLight" size="xlarge" style={styles.premiumTitle}>
           {PREMIUM_TEXT}
         </Text>
       </View>
-      <Text variant="RubikRegular" size="medium" style={styles.description}>
+      <Text variant="RubikLight" size="medium" style={styles.description}>
         {SCREEN_DESCRIPTION_TEXT}
       </Text>
     </View>
@@ -267,6 +271,8 @@ const styles = StyleSheet.create({
   plantAppTitle: {
     textTransform: "capitalize",
     color: "#FFFFFF",
+    lineHeight: 32,
+    textAlignVertical: "bottom",
   },
   premiumTitle: {
     textTransform: "capitalize",
@@ -274,7 +280,8 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: 4,
-    color: "#FFFFFF",
+    color: "#FFFFFFB2",
+    letterSpacing: 0.38,
   },
   featuresContainer: {
     width: "100%",

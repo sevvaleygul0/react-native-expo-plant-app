@@ -18,11 +18,11 @@ export default function ProductItem({
   onPress,
   disabled = false,
 }: ProductItemProps): React.JSX.Element {
-  const content = (
+  const renderContent = (
     <>
       {item.isSaveTag ? (
         <View style={styles.saveTagContainer}>
-          <Text variant="RubikMedium" size="medium" style={styles.saveTagText}>
+          <Text variant="RubikMedium" size="small" style={styles.saveTagText}>
             Save 50%
           </Text>
         </View>
@@ -71,10 +71,10 @@ export default function ProductItem({
           end={{ x: 0, y: 0.5 }}
           style={[styles.productCard, styles.productCardSelected]}
         >
-          {content}
+          {renderContent}
         </LinearGradient>
       ) : (
-        <View style={styles.productCard}>{content}</View>
+        <View style={styles.productCard}>{renderContent}</View>
       )}
     </Pressable>
   );
@@ -123,9 +123,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   radioInnerDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
     backgroundColor: "#FFFFFF",
   },
   productTextContainer: {
@@ -134,14 +134,10 @@ const styles = StyleSheet.create({
   },
   productTitle: {
     color: "#FFFFFF",
-    fontSize: 16,
-    lineHeight: 18,
   },
   productDescription: {
     marginTop: 1,
     color: "#FFFFFFCC",
-    fontSize: 12,
-    lineHeight: 14,
   },
   saveTagContainer: {
     position: "absolute",
