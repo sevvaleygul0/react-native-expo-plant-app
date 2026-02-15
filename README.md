@@ -1,30 +1,15 @@
-# PlantApp - React Native Developer Case
+# PlantApp - React Native Expo
 
 A cross-platform React Native case project built with TypeScript, Redux Toolkit, and React Navigation.  
 The implementation follows the provided onboarding/home flows and API integration requirements.
 
 ## Demo: `assets/videos`
 
-<div align="center" style="display:flex; gap:12px; justify-content:center; flex-wrap:nowrap;">
-  <div style="position:relative; border:1px solid #d0d7de; border-radius:10px; padding:8px; width:31%;">
-    <div style="position:absolute; top:14px; left:14px; background:rgba(0,0,0,0.7); color:#fff; font-size:12px; padding:3px 8px; border-radius:999px;">
-      Android
-    </div>
-    <video src="./assets/videos/android.mp4" controls muted playsinline width="100%"></video>
-  </div>
-  <div style="position:relative; border:1px solid #d0d7de; border-radius:10px; padding:8px; width:31%;">
-    <div style="position:absolute; top:14px; left:14px; background:rgba(0,0,0,0.7); color:#fff; font-size:12px; padding:3px 8px; border-radius:999px;">
-      iPhone 17 Pro Max
-    </div>
-    <video src="./assets/videos/iPhone17ProMax.mov" controls muted playsinline width="100%"></video>
-  </div>
-  <div style="position:relative; border:1px solid #d0d7de; border-radius:10px; padding:8px; width:31%;">
-    <div style="position:absolute; top:14px; left:14px; background:rgba(0,0,0,0.7); color:#fff; font-size:12px; padding:3px 8px; border-radius:999px;">
-      iPhone 16e
-    </div>
-    <video src="./assets/videos/iPhone16e.mov" controls muted playsinline width="100%"></video>
-  </div>
-</div>
+| Android | iPhone 17 Pro Max | iPhone 16e |
+| --- | --- | --- |
+| <a href="./assets/videos/android.mp4"><img src="./assets/videos/android.gif" alt="Android Demo" height="360" /></a> | <a href="./assets/videos/iPhone17ProMax.mov"><img src="./assets/videos/iPhone17ProMax.gif" alt="iPhone 17 Pro Max Demo" height="360" /></a> | <a href="./assets/videos/iPhone16e.mov"><img src="./assets/videos/iPhone16e.gif" alt="iPhone 16e Demo" height="360" /></a> |
+
+Click any GIF to open the full video.
 
 ## How to Run
 
@@ -111,7 +96,7 @@ npm run ios
 - On paywall close from onboarding (or purchase from onboarding), `onboardingCompleted` is set to `true`.
 - On next launch, navigator starts directly from home flow instead of onboarding.
 
-## Case Requirements Coverage
+## Requirements
 
 - [x] React Native cross-platform app structure (Expo + React Native).
 - [x] TypeScript used across the project.
