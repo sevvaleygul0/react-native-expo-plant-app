@@ -6,6 +6,7 @@ import {
   HorizontalCardListItem,
 } from "@/src/components/horizontalCardList";
 import Text from "@/src/components/Text";
+import { COLORS } from "@/src/theme/colors";
 import React from "react";
 import {
   Dimensions,
@@ -265,14 +266,14 @@ const styles = StyleSheet.create({
   },
   plantAppTitle: {
     textTransform: "capitalize",
-    color: "#FFFFFF",
+    color: COLORS.WHITE,
     lineHeight: 32,
     includeFontPadding: false,
     textAlignVertical: "bottom",
   },
   premiumTitle: {
     textTransform: "capitalize",
-    color: "#FFFFFF",
+    color: COLORS.WHITE,
     lineHeight: 32,
     includeFontPadding: false,
     textAlignVertical: "bottom",

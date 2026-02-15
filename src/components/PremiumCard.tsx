@@ -1,6 +1,7 @@
 import Text from "@/src/components/Text";
 import Mail from "@/src/screens/home/assets/svgs/mail";
 import RightArrow from "@/src/screens/home/assets/svgs/rightArrow";
+import { COLORS } from "@/src/theme/colors";
 import React, { useEffect, useRef } from "react";
 import {
   Animated,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
   mailCountText: {
     fontSize: 9,
     lineHeight: 11,
-    color: "#FFFFFF",
+    color: COLORS.WHITE,
   },
   textContent: {
     gap: 4,

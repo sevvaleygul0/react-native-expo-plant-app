@@ -1,4 +1,5 @@
 import Text from "@/src/components/Text";
+import { COLORS } from "@/src/theme/colors";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     borderColor: "#EEF0EF",
     borderRadius: 12,
     overflow: "hidden",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: COLORS.WHITE,
     justifyContent: "flex-start",
   },
   titleWrap: {

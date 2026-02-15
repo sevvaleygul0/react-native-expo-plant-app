@@ -168,14 +168,14 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: COLORS.WHITE,
   },
   productTextContainer: {
     alignItems: "flex-start",
     justifyContent: "center",
   },
   productTitle: {
-    color: "#FFFFFF",
+    color: COLORS.WHITE,
   },
   productDescription: {
     marginTop: 1,
@@ -196,6 +196,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   saveTagText: {
-    color: "#FFFFFF",
+    color: COLORS.WHITE,
   },
 });

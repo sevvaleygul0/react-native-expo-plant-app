@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import Text from "@/src/components/Text";
+import { COLORS } from "@/src/theme/colors";
 
 const BUTTON_VARIANTS = {
   default: {
@@ -62,12 +63,12 @@ export default function Button({
       ]}
     >
       {loading ? (
-        <ActivityIndicator color={textColor ?? "#FFFFFF"} />
+        <ActivityIndicator color={textColor ?? COLORS.WHITE} />
       ) : (
         <Text
           variant="RubikMedium"
           size="medium"
-          color={textColor ?? "#FFFFFF"}
+          color={textColor ?? COLORS.WHITE}
           align="center"
           style={styles.buttonText}
         >

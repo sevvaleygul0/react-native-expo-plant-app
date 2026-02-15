@@ -15,18 +15,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useCallback, useMemo, useState } from "react";
 import { Alert } from "react-native";
 
-const YEARLY_CTA_TEXT = "Try free for 3 days";
-const MONTHLY_CTA_TEXT = "$2.99/month";
-
-const PURCHASE_ALERT_TITLE = "Purchase successful";
-const PURCHASE_ALERT_MESSAGE = "Your purchase has been completed successfully.";
-const TERMS_ALERT_TITLE = "Terms";
-const TERMS_ALERT_MESSAGE = "Terms of use opened.";
-const PRIVACY_ALERT_TITLE = "Privacy";
-const PRIVACY_ALERT_MESSAGE = "Privacy policy opened.";
-const RESTORE_ALERT_TITLE = "Restore";
-const RESTORE_ALERT_MESSAGE = "Restore purchase started.";
-
 export default function usePaywallScreen() {
   const dispatch = useAppDispatch();
   const navigation =
@@ -43,8 +31,8 @@ export default function usePaywallScreen() {
   const ctaText = useMemo(
     () =>
       selectedProductId === PRODUCT_IDS.monthly
-        ? MONTHLY_CTA_TEXT
-        : YEARLY_CTA_TEXT,
+        ? "$2.99/month"
+        : "Try free for 3 days",
     [selectedProductId],
   );
 
@@ -79,21 +67,21 @@ export default function usePaywallScreen() {
     if (isInteractionDisabled) {
       return;
     }
-    Alert.alert(TERMS_ALERT_TITLE, TERMS_ALERT_MESSAGE);
+    Alert.alert("Terms", "Terms of use opened.");
   }, [isInteractionDisabled]);
 
   const onPrivacyPress = useCallback(() => {
     if (isInteractionDisabled) {
       return;
     }
-    Alert.alert(PRIVACY_ALERT_TITLE, PRIVACY_ALERT_MESSAGE);
+    Alert.alert("Privacy", "Privacy policy opened.");
   }, [isInteractionDisabled]);
 
   const onRestorePress = useCallback(() => {
     if (isInteractionDisabled) {
       return;
     }
-    Alert.alert(RESTORE_ALERT_TITLE, RESTORE_ALERT_MESSAGE);
+    Alert.alert("Restore", "Restore purchase started.");
   }, [isInteractionDisabled]);
 
   const onCtaPress = useCallback(async () => {
@@ -111,7 +99,10 @@ export default function usePaywallScreen() {
         dispatch(setOnboardingCompleted(true));
       }
 
-      Alert.alert(PURCHASE_ALERT_TITLE, PURCHASE_ALERT_MESSAGE);
+      Alert.alert(
+        "Purchase successful",
+        "Your purchase has been completed successfully.",
+      );
 
       if (route.params?.source === "onboarding") {
         navigation.reset({

@@ -1,5 +1,6 @@
 import Text from "@/src/components/Text";
 import { Article, getArticles } from "@/src/services";
+import { COLORS } from "@/src/theme/colors";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -201,7 +202,7 @@ const styles = StyleSheet.create({
     aspectRatio: 240 / 164,
     borderRadius: 12,
     overflow: "hidden",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: COLORS.WHITE,
   },
   cardPressed: {
     opacity: 0.8,

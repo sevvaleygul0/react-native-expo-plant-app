@@ -1,4 +1,5 @@
 import Text from "@/src/components/Text";
+import { COLORS } from "@/src/theme/colors";
 import React from "react";
 import {
   FlatList,
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   title: {
-    color: "#FFFFFF",
+    color: COLORS.WHITE,
     fontSize: 20,
     lineHeight: 24,
     letterSpacing: 0.38,
