@@ -2,14 +2,19 @@ import Text from "@/src/components/Text";
 import { PaywallProduct } from "@/src/screens/paywall/constants";
 import { COLORS } from "@/src/theme/colors";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { Animated, Easing, Pressable, StyleSheet, View } from "react-native";
+
+const PRODUCT_ITEM_ANIMATION_DURATION = 620;
+const PRODUCT_ITEM_BASE_DELAY = 120;
+const PRODUCT_ITEM_STAGGER_DELAY = 140;
 
 type ProductItemProps = {
   item: PaywallProduct;
   isSelected: boolean;
   onPress: () => void;
   disabled?: boolean;
+  animationOrder?: number;
 };
 
 export default function ProductItem({
@@ -17,7 +22,42 @@ export default function ProductItem({
   isSelected,
   onPress,
   disabled = false,
+  animationOrder = 0,
 }: ProductItemProps): React.JSX.Element {
+  const entranceAnimation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const delay =
+      PRODUCT_ITEM_BASE_DELAY +
+      Math.max(0, animationOrder) * PRODUCT_ITEM_STAGGER_DELAY;
+
+    Animated.timing(entranceAnimation, {
+      toValue: 1,
+      duration: PRODUCT_ITEM_ANIMATION_DURATION,
+      delay,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [animationOrder, entranceAnimation]);
+
+  const animatedStyle = {
+    opacity: entranceAnimation,
+    transform: [
+      {
+        translateY: entranceAnimation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [18, 0],
+        }),
+      },
+      {
+        scale: entranceAnimation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0.97, 1],
+        }),
+      },
+    ],
+  };
+
   const renderContent = (
     <>
       {item.isSaveTag ? (
@@ -58,25 +98,27 @@ export default function ProductItem({
   );
 
   return (
-    <Pressable
-      onPress={onPress}
-      style={styles.productPressable}
-      disabled={disabled}
-    >
-      {isSelected ? (
-        <LinearGradient
-          colors={["rgba(40, 175, 110, 0.168)", "rgba(40, 175, 110, 0)"]}
-          locations={[0, 0.6851]}
-          start={{ x: 1, y: 0.5 }}
-          end={{ x: 0, y: 0.5 }}
-          style={[styles.productCard, styles.productCardSelected]}
-        >
-          {renderContent}
-        </LinearGradient>
-      ) : (
-        <View style={styles.productCard}>{renderContent}</View>
-      )}
-    </Pressable>
+    <Animated.View style={animatedStyle}>
+      <Pressable
+        onPress={onPress}
+        style={styles.productPressable}
+        disabled={disabled}
+      >
+        {isSelected ? (
+          <LinearGradient
+            colors={["rgba(40, 175, 110, 0.168)", "rgba(40, 175, 110, 0)"]}
+            locations={[0, 0.6851]}
+            start={{ x: 1, y: 0.5 }}
+            end={{ x: 0, y: 0.5 }}
+            style={[styles.productCard, styles.productCardSelected]}
+          >
+            {renderContent}
+          </LinearGradient>
+        ) : (
+          <View style={styles.productCard}>{renderContent}</View>
+        )}
+      </Pressable>
+    </Animated.View>
   );
 }
 

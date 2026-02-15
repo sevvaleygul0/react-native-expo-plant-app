@@ -43,7 +43,7 @@ export default function HomeScreen(): React.JSX.Element {
   const renderBgImage = () => (
     <Image
       source={assets.images.background}
-      style={[styles.headerBackgroundImage, { top: 0 }]}
+      style={styles.headerBackgroundImage}
     />
   );
 
@@ -127,11 +127,12 @@ const styles = StyleSheet.create({
   },
   headerBackgroundImage: {
     position: "absolute",
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     width: Dimensions.get("window").width,
-    height: 200,
+    height: Dimensions.get("window").height * 0.2,
   },
   premiumCard: {
     marginTop: 16,

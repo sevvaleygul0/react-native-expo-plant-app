@@ -22,15 +22,6 @@ import ProductItem from "./components/ProductItem";
 import { PAYWALL_FEATURE_SEEDS, PAYWALL_PRODUCTS } from "./constants";
 import usePaywallScreen from "./hooks/usePaywallScreen";
 
-const TITLE_TEXT = "PlantApp";
-const PREMIUM_TEXT = "Premium";
-const SCREEN_DESCRIPTION_TEXT = "Access All Features";
-const PRODUCT_INFO_TEXT =
-  "After the 3-day free trial period you'll be charged ₺274.99 per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable";
-const TERMS_TEXT = "Terms";
-const PRIVACY_TEXT = "Privacy";
-const RESTORE_TEXT = "Restore";
-
 export default function PaywallScreen(): React.JSX.Element {
   const {
     selectedProductId,
@@ -73,14 +64,14 @@ export default function PaywallScreen(): React.JSX.Element {
           size="xlarge"
           style={styles.plantAppTitle}
         >
-          {TITLE_TEXT}{" "}
+          PlantApp{" "}
         </Text>
         <Text variant="RubikLight" size="xlarge" style={styles.premiumTitle}>
-          {PREMIUM_TEXT}
+          Premium
         </Text>
       </View>
       <Text variant="RubikLight" size="medium" style={styles.description}>
-        {SCREEN_DESCRIPTION_TEXT}
+        Access All Features
       </Text>
     </View>
   );
@@ -93,6 +84,7 @@ export default function PaywallScreen(): React.JSX.Element {
 
   const renderProductItem = ({
     item,
+    index,
   }: ListRenderItemInfo<(typeof PAYWALL_PRODUCTS)[number]>) => {
     const isSelected = item.id === selectedProductId;
 
@@ -102,6 +94,7 @@ export default function PaywallScreen(): React.JSX.Element {
         isSelected={isSelected}
         onPress={() => onSelectProduct(item.id)}
         disabled={isInteractionDisabled}
+        animationOrder={index}
       />
     );
   };
@@ -125,7 +118,9 @@ export default function PaywallScreen(): React.JSX.Element {
       color="#FFFFFF85"
       style={styles.productInfoText}
     >
-      {PRODUCT_INFO_TEXT}
+      After the 3-day free trial period you'll be charged ₺274.99 per year
+      unless you cancel before the trial expires. Yearly Subscription is
+      Auto-Renewable
     </Text>
   );
 
@@ -142,7 +137,7 @@ export default function PaywallScreen(): React.JSX.Element {
           color="#FFFFFF80"
           style={styles.termsPrivacyText}
         >
-          {TERMS_TEXT}
+          Terms
         </Text>
       </Pressable>
       <Text variant="RubikRegular" size="xsmall" color="#FFFFFF80">
@@ -159,7 +154,7 @@ export default function PaywallScreen(): React.JSX.Element {
           color="#FFFFFF80"
           style={styles.termsPrivacyText}
         >
-          {PRIVACY_TEXT}
+          Privacy
         </Text>
       </Pressable>
       <Text variant="RubikRegular" size="xsmall" color="#FFFFFF80">
@@ -176,7 +171,7 @@ export default function PaywallScreen(): React.JSX.Element {
           color="#FFFFFF80"
           style={styles.termsPrivacyText}
         >
-          {RESTORE_TEXT}
+          Restore
         </Text>
       </Pressable>
     </View>
@@ -266,17 +261,21 @@ const styles = StyleSheet.create({
   },
   titleRow: {
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "baseline",
   },
   plantAppTitle: {
     textTransform: "capitalize",
     color: "#FFFFFF",
     lineHeight: 32,
+    includeFontPadding: false,
     textAlignVertical: "bottom",
   },
   premiumTitle: {
     textTransform: "capitalize",
     color: "#FFFFFF",
+    lineHeight: 32,
+    includeFontPadding: false,
+    textAlignVertical: "bottom",
   },
   description: {
     marginTop: 4,

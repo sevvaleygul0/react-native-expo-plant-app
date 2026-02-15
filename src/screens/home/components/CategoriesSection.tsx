@@ -3,6 +3,8 @@ import { PlantCategory, getPlantCategories } from "@/src/services";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
+  Animated,
+  Easing,
   Image,
   Pressable,
   StyleSheet,
@@ -12,17 +14,29 @@ import {
 import PlantCategoryCard from "./PlantCategoryCard";
 import TwoColumnGrid from "./TwoColumnGrid";
 
+const CATEGORIES_ANIMATION_DURATION = 680;
+const CATEGORIES_ANIMATION_DELAY = 220;
+
 export default function CategoriesSection(): React.JSX.Element {
   const [categories, setCategories] = useState<PlantCategory[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const isMountedRef = useRef<boolean>(true);
+  const entranceAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    Animated.timing(entranceAnimation, {
+      toValue: 1,
+      duration: CATEGORIES_ANIMATION_DURATION,
+      delay: CATEGORIES_ANIMATION_DELAY,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+
     return () => {
       isMountedRef.current = false;
     };
-  }, []);
+  }, [entranceAnimation]);
 
   const preloadCategoryImages = useCallback(
     async (nextItems: PlantCategory[]) => {
@@ -66,8 +80,20 @@ export default function CategoriesSection(): React.JSX.Element {
     fetchCategories();
   }, [fetchCategories]);
 
+  const animatedStyle = {
+    opacity: entranceAnimation,
+    transform: [
+      {
+        translateY: entranceAnimation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [10, 0],
+        }),
+      },
+    ],
+  };
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animatedStyle]}>
       {isLoading && (
         <View style={styles.feedbackContainer}>
           <ActivityIndicator size="small" color="#13231B" />
@@ -108,7 +134,7 @@ export default function CategoriesSection(): React.JSX.Element {
           )}
         />
       )}
-    </View>
+    </Animated.View>
   );
 }
 

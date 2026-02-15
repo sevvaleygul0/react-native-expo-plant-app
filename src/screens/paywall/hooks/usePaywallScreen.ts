@@ -31,7 +31,8 @@ export default function usePaywallScreen() {
   const dispatch = useAppDispatch();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const route = useRoute<RouteProp<RootStackParamList, typeof ROOT_ROUTES.PAYWALL>>();
+  const route =
+    useRoute<RouteProp<RootStackParamList, typeof ROOT_ROUTES.PAYWALL>>();
 
   const [selectedProductId, setSelectedProductId] = useState<string>(
     DEFAULT_SELECTED_PRODUCT_ID,
@@ -102,7 +103,8 @@ export default function usePaywallScreen() {
 
     try {
       setIsInteractionDisabled(true);
-      await sleep(3000);
+      //? For testing purposes
+      await sleep(2000);
       dispatch(setIsSubscriber(true));
 
       if (route.params?.source === "onboarding") {

@@ -3,6 +3,8 @@ import { Article, getArticles } from "@/src/services";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
+  Animated,
+  Easing,
   FlatList,
   Image,
   Linking,
@@ -11,17 +13,29 @@ import {
   View,
 } from "react-native";
 
+const CAROUSEL_ANIMATION_DURATION = 600;
+const CAROUSEL_ANIMATION_DELAY = 140;
+
 export default function Carousel(): React.JSX.Element {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const isMountedRef = useRef<boolean>(true);
+  const entranceAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    Animated.timing(entranceAnimation, {
+      toValue: 1,
+      duration: CAROUSEL_ANIMATION_DURATION,
+      delay: CAROUSEL_ANIMATION_DELAY,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+
     return () => {
       isMountedRef.current = false;
     };
-  }, []);
+  }, [entranceAnimation]);
 
   const preloadArticleImages = useCallback(async (nextArticles: Article[]) => {
     await Promise.allSettled(
@@ -70,8 +84,20 @@ export default function Carousel(): React.JSX.Element {
     await Linking.openURL(uri);
   }, []);
 
+  const animatedStyle = {
+    opacity: entranceAnimation,
+    transform: [
+      {
+        translateY: entranceAnimation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [8, 0],
+        }),
+      },
+    ],
+  };
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animatedStyle]}>
       <Text variant="RubikMedium" style={styles.title}>
         Get Started
       </Text>
@@ -129,7 +155,7 @@ export default function Carousel(): React.JSX.Element {
           )}
         />
       )}
-    </View>
+    </Animated.View>
   );
 }
 
