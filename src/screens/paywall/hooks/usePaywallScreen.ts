@@ -5,6 +5,11 @@ import {
   DEFAULT_SELECTED_PRODUCT_ID,
   PRODUCT_IDS,
 } from "@/src/screens/paywall/constants";
+import { useAppDispatch } from "@/src/store/hooks";
+import {
+  setIsSubscriber,
+  setOnboardingCompleted,
+} from "@/src/store/slices/userStatusSlice";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useCallback, useMemo, useState } from "react";
@@ -23,6 +28,7 @@ const RESTORE_ALERT_TITLE = "Restore";
 const RESTORE_ALERT_MESSAGE = "Restore purchase started.";
 
 export default function usePaywallScreen() {
+  const dispatch = useAppDispatch();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, typeof ROOT_ROUTES.PAYWALL>>();
@@ -57,6 +63,7 @@ export default function usePaywallScreen() {
     }
 
     if (route.params?.source === "onboarding") {
+      dispatch(setOnboardingCompleted(true));
       navigation.reset({
         index: 0,
         routes: [{ name: ROOT_ROUTES.INTERNAL_SCREENS }],
@@ -65,7 +72,7 @@ export default function usePaywallScreen() {
     }
 
     navigation.goBack();
-  }, [isInteractionDisabled, navigation, route.params?.source]);
+  }, [dispatch, isInteractionDisabled, navigation, route.params?.source]);
 
   const onTermsPress = useCallback(() => {
     if (isInteractionDisabled) {
@@ -96,11 +103,27 @@ export default function usePaywallScreen() {
     try {
       setIsInteractionDisabled(true);
       await sleep(3000);
+      dispatch(setIsSubscriber(true));
+
+      if (route.params?.source === "onboarding") {
+        dispatch(setOnboardingCompleted(true));
+      }
+
       Alert.alert(PURCHASE_ALERT_TITLE, PURCHASE_ALERT_MESSAGE);
+
+      if (route.params?.source === "onboarding") {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: ROOT_ROUTES.INTERNAL_SCREENS }],
+        });
+        return;
+      }
+
+      navigation.goBack();
     } finally {
       setIsInteractionDisabled(false);
     }
-  }, [isInteractionDisabled]);
+  }, [dispatch, isInteractionDisabled, navigation, route.params?.source]);
 
   return {
     selectedProductId,

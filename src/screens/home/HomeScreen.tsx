@@ -2,6 +2,7 @@ import PremiumCard from "@/src/components/PremiumCard";
 import Text from "@/src/components/Text";
 import { ROOT_ROUTES } from "@/src/navigation/routeNames";
 import { RootStackParamList } from "@/src/navigation/types";
+import { useAppSelector } from "@/src/store/hooks";
 import { COLORS } from "@/src/theme/colors";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -14,6 +15,7 @@ import CategoriesSection from "./components/CategoriesSection";
 
 export default function HomeScreen(): React.JSX.Element {
   const { top: topInset } = useSafeAreaInsets();
+  const isSubscriber = useAppSelector((state) => state.userStatus.isSubscriber);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -70,14 +72,14 @@ export default function HomeScreen(): React.JSX.Element {
   const renderCategories = () => <CategoriesSection />;
 
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
         {renderHeader()}
         <View style={styles.content}>
-          {renderPremiumCard()}
+          {!isSubscriber ? renderPremiumCard() : null}
           <Carousel />
           {renderCategories()}
         </View>

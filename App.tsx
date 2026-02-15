@@ -2,8 +2,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import React from 'react';
+import { Provider } from "react-redux";
 
 import RootNavigator from '@/src/navigation/rootNavigator';
+import { store } from "@/src/store";
 
 export default function App(): React.JSX.Element {
   const [fontsLoaded, fontError] = useFonts({
@@ -42,8 +44,10 @@ export default function App(): React.JSX.Element {
   }
 
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
